@@ -1,0 +1,2 @@
+[global.databases.symtalk_db]
+url = "postgres://:password@localhost/symtalk_db"
