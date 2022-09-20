@@ -8,39 +8,35 @@ pub struct NewCheck {
 
 #[derive(Deserialize)]
 struct NewCheckData {
-    pub number: Option<u32>,
+    pub number: Option<i32>,
 }
 
 #[derive(Serialize)]
 pub struct JsonResult {
-    pub bool: bool,
+    pub results: i32,
 }
 
 
-#[get("/prime", data="<new_check>")]
-pub fn get_if_prime(
-    new_check: Json<NewCheck>) -> Json<JsonResult> {
+#[post("/cpu-operation", data="<data_in>")]
+pub fn post_cpu_operation(
+    data_in: Json<NewCheck>) -> Json<JsonResult> {
         
-        let number = new_check.into_inner().data.number;
+        let number = data_in.into_inner().data.number;
 
-        let check = check_if_prime(number.unwrap());
+        let check = cpu_intensive_function(number.unwrap());
 
         let response = JsonResult {
-            bool: check
+            results: check
         };
 
         Json(response)
 }
 
 
-fn check_if_prime(n: u32) -> bool {
-    if n <= 1 {
-        return false;
+fn cpu_intensive_function(i: i32) -> i32 {
+    let mut n = 0;
+    while n < i {
+        n += 1
     }
-    for a in 2..n {
-        if n % a == 0 {
-            return false;
-        }
-    }
-    true
+    n
 }

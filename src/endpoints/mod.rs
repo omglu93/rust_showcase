@@ -4,5 +4,5 @@ pub mod database;
 
 use rocket_sync_db_pools::database;
 
-#[database("symtalk_db")]
+#[database("symptalk_db")]
 pub struct AppDatabase(diesel::PgConnection);

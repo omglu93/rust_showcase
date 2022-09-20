@@ -1,2 +1,2 @@
-[global.databases.symtalk_db]
-url = "postgres://:password@localhost/symtalk_db"
+[global.databases.symptalk_db]
+url = "postgres://:password@localhost:5432/symptalk_db"
